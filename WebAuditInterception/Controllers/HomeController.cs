@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure.Interception;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebAuditInterception.Models;
 
 namespace WebAuditInterception.Controllers
 {
@@ -10,6 +12,7 @@ namespace WebAuditInterception.Controllers
     {
         public ActionResult Index()
         {
+            //DbInterception.Add(new AuditInterceptor("People"));
             return View();
         }
 
