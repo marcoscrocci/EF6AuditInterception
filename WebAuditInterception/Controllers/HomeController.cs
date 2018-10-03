@@ -10,9 +10,28 @@ namespace WebAuditInterception.Controllers
 {
     public class HomeController : Controller
     {
+        private AuditInterceptor _auditInterceptor;
+
+        public AuditInterceptor AuditInterceptor
+        {
+            get
+            {
+                if (Session["auditInterceptor"] != null)
+                { 
+                    _auditInterceptor = (AuditInterceptor) Session["auditInterceptor"];
+                }
+                else
+                { 
+                    _auditInterceptor = new AuditInterceptor();
+                    Session["auditInterceptor"] = _auditInterceptor;
+                }
+                
+                return _auditInterceptor;
+            }
+        }
+
         public ActionResult Index()
         {
-            //DbInterception.Add(new AuditInterceptor("People"));
             return View();
         }
 
@@ -29,5 +48,17 @@ namespace WebAuditInterception.Controllers
 
             return View();
         }
+
+        public ActionResult AtivarDBInterceptor()
+        {
+            DbInterception.Add(AuditInterceptor);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DesativarDBInterceptor()
+        {
+            DbInterception.Remove(AuditInterceptor);
+            return RedirectToAction("Index");
+        }   
     }
 }

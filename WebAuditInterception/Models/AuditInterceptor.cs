@@ -59,8 +59,10 @@ namespace WebAuditInterception.Models
         private void GravarComando(DbCommand command)
         {
             var sql = command.CommandText;
-            bool podeExecutar = (sql.ToLower().IndexOf("comando") < 0) && (sql.ToLower().IndexOf("parametro") < 0);
-
+            bool podeExecutar =
+                (sql.ToLower().IndexOf("comando") < 0)
+                && (sql.ToLower().IndexOf("parametro") < 0);
+                      
             if (podeExecutar)
             {
                 var comando = new Comando();

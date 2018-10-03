@@ -12,7 +12,7 @@ namespace WebAuditInterception.Models
     {
         public AuditDBContext() : base("AuditEntities")
         {
-
+            
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
