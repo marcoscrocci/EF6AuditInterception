@@ -17,15 +17,15 @@ namespace WebAuditInterception.Controllers
             get
             {
                 if (Session["auditInterceptor"] != null)
-                { 
-                    _auditInterceptor = (AuditInterceptor) Session["auditInterceptor"];
+                {
+                    _auditInterceptor = (AuditInterceptor)Session["auditInterceptor"];
                 }
                 else
-                { 
+                {
                     _auditInterceptor = new AuditInterceptor();
                     Session["auditInterceptor"] = _auditInterceptor;
                 }
-                
+
                 return _auditInterceptor;
             }
         }
@@ -59,6 +59,6 @@ namespace WebAuditInterception.Controllers
         {
             DbInterception.Remove(AuditInterceptor);
             return RedirectToAction("Index");
-        }   
+        }
     }
 }
